@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guessing Game</title>
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #444;
+        }
+        h1 {
+            color: #ff6347;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 50px;
+            background-color: #d3d3d3;
+            border-radius: 10px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff6347;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff7f50;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guessing Game</h1>
+    <form onsubmit="event.preventDefault(); makeGuess();">
+        <label>Guess a number between 1 and 100:</label>
+        <input type="number" id="guess" min="1" max="100">
+        <button type="submit">Guess</button>
+    </form>
+    <div id="output"></div>
+
+    <script>
+        var numberToGuess = Math.floor(Math.random() * 100) + 1;
+        var phrases = ["Almost there!", "Try again!", "Nice try!", "Keep going!", "You're close!"];
+
+        function makeGuess() {
+            var guess = document.getElementById('guess').value;
+            var output = document.getElementById('output');
+
+            if (guess < numberToGuess) {
+                output.textContent = "Too low! " + phrases[Math.floor(Math.random() * phrases.length)];
+            } else if (guess > numberToGuess) {
+                output.textContent = "Too high! " + phrases[Math.floor(Math.random() * phrases.length)];
+            } else {
+                output.textContent = "You got it! " + phrases[Math.floor(Math.random() * phrases.length)];
+            }
+        }
+    </script>
+</body>
+</html>
